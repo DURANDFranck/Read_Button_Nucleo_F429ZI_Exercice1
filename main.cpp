@@ -1,12 +1,14 @@
 #include "mbed.h"
 
+DigitalIn mybutton(USER_BUTTON);
 DigitalOut myled(LED1);
 
-int main() {
+int main()
+{
     while(1) {
-        myled = 1; // LED is ON
-        wait(0.2); // 200 ms
-        myled = 0; // LED is OFF
-        wait(1.0); // 1 sec
+        if (mybutton == 0) { // Button is pressed
+            myled = !myled; // Toggle the LED state
+            wait(0.2); // 200 ms
+        }
     }
 }
